@@ -20,5 +20,5 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('survey/', views.survey_view, name='survey'),
+    path('', views.survey_view, name='survey'),
 ]
