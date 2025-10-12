@@ -3,50 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <title>Menstrual Hygiene Survey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       background-color: #f8f9fa;
-      padding: 2rem;
+      padding-top: 40px;
     }
     .form-container {
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
-      background-color: #ffffff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
     h2 {
       color: #d63384;
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 30px;
     }
     .btn-submit {
       background-color: #d63384;
       color: white;
     }
+    .btn-submit:hover {
+      background-color: #c2186a;
+    }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>Menstrual Hygiene Survey</h2>
-    <form method="post">
-      {% csrf_token %}
-      {% for field in form %}
+  <div class="container">
+    <div class="form-container">
+      <h2>Menstrual Hygiene Survey</h2>
+      <form method="post">
+        {% csrf_token %}
+
         <div class="mb-3">
-          <label class="form-label">{{ field.label }}</label>
-          {{ field }}
-          {% if field.errors %}
-            <div class="text-danger">{{ field.errors }}</div>
-          {% endif %}
+          <label for="{{ form.name.id_for_label }}" class="form-label">Your Name</label>
+          {{ form.name }}
         </div>
-      {% endfor %}
-      <button type="submit" class="btn btn-submit">Submit</button>
-    </form>
+
+        <div class="mb-3">
+          <label for="{{ form.age.id_for_label }}" class="form-label">Your Age</label>
+          {{ form.age }}
+        </div>
+
+         <div class="mb-3">
+          <label for="gender" class="form-label">Gender</label>
+          <select name="gender" id="gender" class="form-select">
+            <option value="" disabled selected>Select your gender</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="other">Other</option>
+            <option value="prefer_not">Prefer not to say</option>
+          </select>
+        </div>
+
+        
+
+        <div class="mb-3">
+          <label for="{{ form.school.id_for_label }}" class="form-label">School Name</label>
+          {{ form.school }}
+        </div>
+
+        <div class="mb-3">
+          <label for="{{ form.challenges.id_for_label }}" class="form-label">Menstrual Hygiene Challenges</label>
+          {{ form.challenges }}
+        </div>
+
+        <div class="mb-3">
+          <label for="{{ form.suggestions.id_for_label }}" class="form-label">Suggestions or Feedback</label>
+          {{ form.suggestions }}
+        </div>
+
+        <button type="submit" class="btn btn-submit">Submit</button>
+      </form>
+    </div>
   </div>
 </body>
-
 
 <!-- Footer -->
 <footer class="mt-5 py-4" style="background-color: #E6F7FF; text-align: center;">
